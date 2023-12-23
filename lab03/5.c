@@ -3,21 +3,31 @@
 
 int main() {
     char input[3]; fgets(input, 3, stdin);
-    int num = atoi(input);
+    int size = atoi(input);
 
-    if (num <= 0 || num > 26) {
+    if (size <= 0 || size > 26) {
         printf("-");
         return 0;
     }
 
-    for (int i = num; i > 0; --i) {
-        printf("%c", 97 + i - 1);
-        if (num != 1) printf("-");;
-    }
-
-    for (int i = 1; i <= num - 1; i++) {
-        printf("%c", 97 + i);
-        if (i != num - 1) printf("-");
+    int total = (size * 4) - 3;
+    int middle = total / 2;
+    int ch = 'a' + size - 1;
+    
+    for (int i = 0; i < total; i++) {
+        if (i % 2 == 0) {
+            printf("%c", ch);
+            
+            if (i == middle) {
+                ch = 'a' + 1;
+            }else if (i > middle) {
+                ch++;
+            } else {
+                ch--;
+            }
+        } else {
+            printf("-");
+        }
     }
     
     return 0;
